@@ -78,7 +78,8 @@ passport.use('local-signup', new LocalStrategy(
                 const newUser = new User({
                   username,
                   email,
-                  password: hashPass
+                  password: hashPass,
+                  image: req.file.url
                 });
 
                 newUser.save((err) => {
@@ -121,5 +122,9 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(8000, function () {
+  console.log('Example app listening on port 8000!')
+})
 
 module.exports = app;
